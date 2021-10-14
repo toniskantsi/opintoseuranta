@@ -1,0 +1,118 @@
+body {
+    color: black;                       /* Bodyn sisällä kaiken tekstin väri on musta */    
+}
+
+#aloittamatta {
+    background-color:  lightblue;               /* Jos vaihe on aloittamatta, niin taulussa solun tausta on vaaleansininen */
+    border-radius:25px;
+}
+
+#kesken {
+    background-color: orange;                      /* Jos vaihe on kesken, niin taulussa solun tausta on oranssi */
+    border-radius:25px;
+}
+
+#tarvitsenapua {
+    background-color: red;                          /* Jos vaihe on tarvitsen apua, niin taulussa solun tausta on punainen */
+    border-radius:25px; 
+}
+
+#valmis {
+    background-color: green;                    /* Jos vaihe on valmis, niin taulussa solun tausta on vihreä */
+    border-radius: 25px;
+}
+
+.vaihe {
+    text-align: center;                         /* Keskitetään taulun "Vaihe" tekstit keskelle solua */
+    border-radius:25px;
+}
+
+td {
+    color: black;                               /* Table datan fontin väri on musta */
+    padding: 3px;                                   /* Padding 3 pixeliä joka suuntaan */
+    padding:0,5rem 1rem;
+}
+
+th {
+    color: black;                               /* Table head fontti musta */
+    
+    padding: 1rem 2rem;
+    text-transform:uppercase;                   /* Kaikki TH kohdat ISOILLA KIRJAIMILLA */
+}
+
+table {
+    box-sizing: border-box;
+    margin: 6px;                                
+    padding: 0;
+    align-items: center;                        /* Keskitetään */
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px gray;                /* Laitetaan taulun taakse vähän varjostusta, niin tulee vähän 3D tyylinen effekti */
+
+}
+
+.searchstudent {
+    align-items: center;                        /* Oppilaan hakupalkki keskitetään */
+    text-align: center; 
+}
+
+.edit1form {
+    align-items: center;
+    text-align: center;
+}
+
+input[type=text] {                              /* Kaikki input text kohdat  */
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 1px solid #2d9fd9;
+     color: black;                              /* font musta */
+     width: 250px;                                  /* Tekstikenttien koko */
+     height: 30px;
+     padding-left: 10px;                            /* Padding vasemmalle 10 pixeliä */
+    }
+
+input[type=submit] {                            /* Submit painikkeiden muokkaus */
+    background-color: #4CAF50;
+    border: none;
+    color: white;                               /* Fontin väri valkoinen */
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;                            
+    border-radius: 30px;
+}
+
+input[type="submit"]:hover {
+    background-color: lightgreen;                   /* Kun hiiripainike on submit painikkeen päällä, vihreä painike muuttuu vaaleanvihreäksi */
+}
+
+
+.lopetaseuraaminen {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.settings {
+    align-items: right;                             /* Hammasratas ikoni yläoikealla josta päästään settings.php sivulle siirretään oikeaan reunaan */
+}
+
+td input[type="checkbox"] {                     /* Table data checkbox */
+    float: left;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.searchstudent {
+    align-items: center;                /* Keskitetään searchstudent div joka on oppilaan hakukone */
+}
+
+.headername {
+    color: white;
+    font-weight: bold;
+}
