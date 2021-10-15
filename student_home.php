@@ -1,5 +1,5 @@
-
 <?php
+ob_start();                                         // Estää header errorin
 session_start();                                    // Aloitetaan sessio
 
 include_once "connect.php";                         // Liitetään yhteys tietokantaan
@@ -20,8 +20,7 @@ if ($resultCheck > 0) {                                                 // Jos t
 if(isset($_SESSION['User'])) {                                  // Jos sessio on käynnissä tehdään seuraavaa...
     if ( $usertype == 1) {                                      // Jos sessiossa oleva käyttäjätyyppi on 1, eli oppilas..
         include_once "studentheader.php";                          // Lisätään kirjautuneen oppilaan header
-        echo  $firstname. " ";
-        echo $lastname;
+
     }
     
     }
@@ -39,7 +38,7 @@ if(isset($_SESSION['User'])) {                                  // Jos sessio on
     <link rel="stylesheet" href="bootstrap/bootstrap.css">          <!--Liitetään bootstrap-->
 </head>
 <body>
-
+<div class="opinnot">
 <h2>Minun opintoni</h2>
 <form action="" method="post">                      <!--Tässä alkaa HTML formi johon opiskelija lisää opinnon, tehtävän sekä vaiheen-->
     <label>Opintoaine</label>
@@ -68,7 +67,7 @@ if(isset($_SESSION['User'])) {                                  // Jos sessio on
         <th>Toiminnot</th>
         <th>Viimeksi muokattu</th>
     </tr>
-    <?php
+<?php
         
         $sql = "SELECT * FROM studies WHERE student_id = $sessio";              // Valitsee kaikki opinnot jossa student_id täsmää $sessio:n $row['id'] kanssa users taulusta
         $run = $conn -> query($sql);
@@ -76,7 +75,7 @@ if(isset($_SESSION['User'])) {                                  // Jos sessio on
             while ($row = $run -> fetch_assoc()) {
                 $id = $row['id'];                                                   // Tietokannan studies taulun ID kohta laitetaan muuttujaan $id
           
-    ?> 
+?> 
     <tr>
         <td><?php echo $row['opintoaine'] ?></td>                                   <!--Näytetään taulussa oppilaan opintoaine, tehtävä vaihe jne...-->
         <td><?php echo $row['tehtava'] ?></td>
@@ -92,15 +91,16 @@ if(isset($_SESSION['User'])) {                                  // Jos sessio on
         else if ($row['vaihe'] == 'Valmis') {
             echo "<div id='valmis'>Valmis</div>";
         }
-         ?></td>
+?></td>
             
-        <td>
-              <a href='edit.php?id=<?php echo $id; ?>'>Muokkaa</a>                      <!--Tästä pääsee muokkaamaan opintoja-->                                                                     
-              <a href='delete.php?id=<?php echo $id; ?>' onclick="return confirm('Haluatko varmasti poistaa rivin?')">Poista</a></td><!--Tästä poistetaan opinto taulusta, kun poisto nappia painetaan, javascript kysyy vielä haluatko varmasti poistaa opinnon.-->
-              <td>
-        <?php 
-    $date = $row['date'];                                                       // Laitetaan päivämäärä tietokannasta omaan muuttujaan
 
+<td>
+<a href='edit.php?id=<?php echo $id; ?>'>Muokkaa</a>                      <!--Tästä pääsee muokkaamaan opintoja-->                                                                     
+<a href='delete.php?id=<?php echo $id; ?>' onclick="return confirm('Haluatko varmasti poistaa rivin?')">Poista</a></td><!--Tästä poistetaan opinto taulusta, kun poisto nappia painetaan, javascript kysyy vielä haluatko varmasti poistaa opinnon.-->
+<td>
+<?php
+    $date = $row['date'];                                                     // Laitetaan päivämäärä tietokannasta omaan muuttujaan
+    date_default_timezone_set("Europe/Helsinki");
     echo substr($date,8,2);                                                     // Käytetään substr() funktiota jossa kerrotaan ensin mistä numerosta, kirjaimesta alkaa echotus sekä montako kirjainta eteenpäin echotetaan.
     echo ".";
     echo substr($date,5,2);
@@ -120,18 +120,17 @@ if(isset($_SESSION['User'])) {                                  // Jos sessio on
          echo ucfirst($muokkaajafname) . " " . ucfirst($muokkaajalname);            // Echotetaan haluamiamme tietoja
      }
  }
-    ?>
+?>
     </td>
             
     </tr> 
     <!--Leikattu osa päättyy tähän-->
-    <?php
+<?php
             }}
          
-    ?>
+?>
 </table>
-</body>
-</html>
+
 
 <?php
 
@@ -139,6 +138,7 @@ if (isset($_POST['tallenna'])) {                        // Jos tallenna painiket
    $opintoaine = $_POST['opintoaine'];                 // $_POST globalista tiedot muuttujiin
   $tehtava = $_POST['tehtava'];
     $vaihe = $_POST['vaihe'];                           // Laitetaan formista saadut tiedot omiin muuttujiinsa jotta on helpompi käsitellä SQL kyselyssä.
+    date_default_timezone_set("Europe/Helsinki");
     $date = date('Y-m-d');
     $muokkaaja = $_SESSION['User'];
     
@@ -146,12 +146,17 @@ if (isset($_POST['tallenna'])) {                        // Jos tallenna painiket
 
     
    
-    $sql = "INSERT INTO studies (student_id, opintoaine, tehtava, vaihe, date, muokkaaja) VALUES ('$sessio', '$opintoaine', '$tehtava', '$vaihe', '$date', '$muokkaaja')";
-    if (mysqli_query($conn, $sql)) {            // Jos ajo onnistuu, tee seuraavaa.
-        
-       header("location:student_home.php");        // Siirretään oppilas takas alkunäkymään, jos SQL ajo menee läpi
+
+    $sqlxx = "INSERT INTO studies (student_id, opintoaine, tehtava, vaihe, date, muokkaaja) VALUES ('$sessio', '$opintoaine', '$tehtava', '$vaihe', '$date', '$muokkaaja')";
+    if (mysqli_query($conn, $sqlxx)) {            // Jos ajo onnistuu, tee seuraavaa.
+header("location:student_home.php");
     } else {
         echo mysqli_error($conn);                   // Jos ajo ei toimi, näytetään ruudulle mikä error ilmestyi.
     }
 }
+ob_end_flush();
 ?>
+</div>
+</body>
+</div>
+</html>

@@ -41,18 +41,18 @@ th {
 }
 
 table {
-    box-sizing: border-box;
-    margin: 6px;                                
+    box-sizing: border-box;                                
     padding: 0;
     align-items: center;                        /* Keskitetään */
-    border-collapse: collapse;
+    border-collapse: collapse; 
     box-shadow: 0 5px 10px gray;                /* Laitetaan taulun taakse vähän varjostusta, niin tulee vähän 3D tyylinen effekti */
 
 }
 
 .searchstudent {
-    align-items: center;                        /* Oppilaan hakupalkki keskitetään */
+     align-items: center;                        /* Oppilaan hakupalkki keskitetään */
     text-align: center; 
+
 }
 
 .edit1form {
@@ -108,11 +108,15 @@ td input[type="checkbox"] {                     /* Table data checkbox */
     width: 100%;
 }
 
-.searchstudent {
-    align-items: center;                /* Keskitetään searchstudent div joka on oppilaan hakukone */
-}
 
 .headername {
     color: white;
     font-weight: bold;
+    position: absolute;
+    left: 250px;
+    top: 20px;
+}
+
+.opinnot {
+    padding: 10px;
 }

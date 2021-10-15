@@ -20,8 +20,8 @@ if(isset($_SESSION['User'])) {
   echo '<span class="material-icons md-6">
   perm_identity
   </span>';
-  echo $_SESSION['User']['firstname']. " ";
-  echo $_SESSION['User']['lastname'];
+  echo ucfirst($_SESSION['User']['firstname']). " ";
+  echo ucfirst($_SESSION['User']['lastname']);
 }?></div>
           <div class="collapse navbar-collapse">
               <ul class="nav navbar ml-auto">

@@ -1,6 +1,6 @@
 <?php
-// KUN OPETTAJA KLIKKAA OPPILAAN OPINNOSTA "MUOKKAA" PAINIKETTA
-session_start();                                    // Aloitetaan sessio
+// KUN OPPILAS KLIKKAA MUOKKAA PAINIKETTA OPINNOISSAAN                                 // Aloitetaan sessio
+session_start();
 include_once "studentheader.php";                   // Sisällytetään tiedostot
 include_once "connect.php";
 if (!$conn) {                                       // Tarkistetaan onko tietokantayhteys

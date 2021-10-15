@@ -1,5 +1,5 @@
 <?php
-// KUN OPPILAS KLIKKAA MUOKKAA PAINIKETTA OPINNOISSAAN
+// KUN OPETTAJA KLIKKAA OPPILAAN OPINNOSTA "MUOKKAA" PAINIKETTA
 session_start();                                        // Aloitetaan sessio
 include_once "connect.php";                             // Sisällytetään tiedostot
 include_once "loginheader.php";
