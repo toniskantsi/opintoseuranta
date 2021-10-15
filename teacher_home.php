@@ -21,6 +21,7 @@
 </body>
 </html>
 <?php
+ob_start();                       // Estää header errorin
 session_start();                  // Käynnistetään sessio
 
 include_once "functions.inc.php";           //liitetään haluttuja tiedostoja 
@@ -49,8 +50,7 @@ $seurattavatoppilaat = $row['student_id'];              // Laitetaan mystudents 
             $id = $row['id'];                                                   // Laitetaan studies taulun ID kohta $id muuttujaan 
 
 
-?>
-
+?>  
 <tr>
 <td><?php echo ucfirst($row['firstname']) ." ". ucfirst($row['lastname']);?></td>       <!--Tulostetaan tietokannasta saatuja tietoja $row arrayn avulla -->
 <td><?php echo $row['opintoaine']?></td>
@@ -73,9 +73,9 @@ $seurattavatoppilaat = $row['student_id'];              // Laitetaan mystudents 
               <a href='edit1.php?id=<?php echo $id; ?>'>Muokkaa</a>                         <!--Tästä päästään muokkaamaan opintoja-->
               <a href='delete1.php?id=<?php echo $id; ?>' onclick="return confirm('Haluatko varmasti poistaa rivin?')">Poista</a></td>
               <td>
-        <?php 
+<?php 
        $date = $row['date'];
-       
+       date_default_timezone_set("Europe/Helsinki");
        echo substr($date,8,2);
        echo ".";
        echo substr($date,5,2);
@@ -97,11 +97,11 @@ $seurattavatoppilaat = $row['student_id'];              // Laitetaan mystudents 
     }
 
         
-        ?>
+?>
     </td>
             </tr>
 
-            
+   
 <?php
 }}}}
 
@@ -214,7 +214,7 @@ if (isset($_GET['id'])) {           // Jos oppilaan nimeä on klikattu niin...
     <?php
 
     }
-
+    ob_end_flush();
  ?>
 
 
