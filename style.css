@@ -117,6 +117,10 @@ td input[type="checkbox"] {                     /* Table data checkbox */
     top: 20px;
 }
 
-.opinnot {
+.opinnot {              /* padding vasempaan reunaan */
     padding: 10px;
+}
+
+.edit {                 /* padding edit sivuihin */
+    padding:10px;
 }
