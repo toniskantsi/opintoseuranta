@@ -29,6 +29,7 @@ $sql = "SELECT * FROM studies WHERE id = $id";          // Tietokantahaku, etsit
     <title>Muokkaa opintoja</title>
 </head>
 <body>
+    <div class="edit">
 <form action="" method="post">          <!-- Luodaan form johon käyttäjä voi syöttää tietoja. Opintoaine, tehtävä ja vaihe -->
     <label>Opintoaine</label>
     <input type="text" name="opintoaine" value="<?php echo $opintoaine ?>">
@@ -43,6 +44,7 @@ $sql = "SELECT * FROM studies WHERE id = $id";          // Tietokantahaku, etsit
     </select>
     <input type="submit" name="update" value="Päivitä opinnot">
 </form>
+    </div>
 </body>
 </html>
 
